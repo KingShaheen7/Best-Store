@@ -1,0 +1,264 @@
+﻿@using Newtonsoft.Json
+@model List<Product>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var userEmail = Context.Session.GetString("UserEmail");
+    if (userEmail == null)
+    {
+        userEmail = ViewContext.HttpContext.Request.Cookies["UserEmail"];
+    }
+}
+    
+<div class="container1">
+    <div class="navigation">
+        <ul>
+            <li>
+                <a href="#">
+                    <span class="icon">
+                        <ion-icon name="cart-outline"></ion-icon>
+                    </span>
+                    <span class="title">Best Store</span>
+                </a>
+            </li>
+            <li style="background-color:white;">
+                <a asp-controller="Home" asp-action="Index">
+                    <span class="icon">
+                        <ion-icon name="home-outline" style="color:#2a2185;"></ion-icon>
+                    </span>
+                    <span class="title" style="color:#2a2185;">Main</span>
+                </a>
+            </li>
+            <li>
+                <a asp-controller="Products" asp-action="Phones">
+                    <span class="icon">
+                        <ion-icon name="phone-portrait-outline"></ion-icon>
+                    </span>
+                    <span class="title">Phones</span>
+                </a>
+            </li>
+            <li>
+                <a asp-controller="Products" asp-action="Laptops">
+                    <span class="icon">
+                        <ion-icon name="laptop-outline"></ion-icon>
+                    </span>
+                    <span class="title">Laptops</span>
+                </a>
+            </li>
+            <li>
+                <a asp-controller="Products" asp-action="Screens">
+                    <span class="icon">
+                        <ion-icon name="desktop-outline"></ion-icon>
+                    </span>
+                    <span class="title">Screens</span>
+                </a>
+            </li>
+            <li>
+                <a asp-controller="Products" asp-action="Admin">
+                    <span class="icon">
+                        <ion-icon name="cog-outline"></ion-icon>
+                    </span>
+                    <span class="title">Management</span>
+                </a>
+            </li>
+            <li>
+                <a asp-controller="Home" asp-action="About_Us">
+                    <span class="icon">
+                        <ion-icon name="help-outline"></ion-icon>
+                    </span>
+                    <span class="title">About Us</span>
+                </a>
+            </li>
+            <li>
+                <a asp-controller="Users" asp-action="LogOut">
+                    <span class="icon">
+                        <ion-icon name="log-out-outline"></ion-icon>
+                    </span>
+                    <span class="title">Sign Out</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="index">
+    <div class="cardBox">
+        <div class="card" style="height: 100%; cursor: auto;">
+            <div class="row align-items-center">
+                <div class="col">
+                    <div class="numbers">1,504</div>
+                    <div class="cardName">Daily Views</div>
+                </div>
+                <div class="col-auto">
+                    <div class="iconBx">
+                        <ion-icon name="eye-outline"></ion-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="height: 100%; cursor: auto;">
+            <div class="row align-items-center">
+                <div class="col">
+                    <div class="numbers">80</div>
+                    <div class="cardName">Sales</div>
+                </div>
+                <div class="col-auto">
+                    <div class="iconBx">
+                        <ion-icon name="cart-outline"></ion-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card" style="height: 100%; cursor: auto;">
+            <div class="row align-items-center">
+                <div class="col">
+                    <div class="numbers">284</div>
+                    <div class="cardName">Comments</div>
+                </div>
+                <div class="col-auto">
+                    <div class="iconBx">
+                        <ion-icon name="chatbubbles-outline"></ion-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="height: 100%; cursor: auto;">
+            <div class="row align-items-center">
+                <div class="col">
+                    <div class="numbers">$7,842</div>
+                    <div class="cardName">Earning</div>
+                </div>
+                <div class="col-auto">
+                    <div class="iconBx">
+                        <ion-icon name="cash-outline"></ion-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================ Order Details List ================= -->
+    <div class="details">
+        <div class="recentOrders">
+            <div class="cardHeader">
+                <h2>Recent Products</h2>
+            </div>
+
+            <div class="table-wrapper" style="position: relative; height: 400px; overflow-y: auto;">
+                <table class="table" style="width: 100%; table-layout: fixed;">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Brand</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Imported</th>
+                            <th>Image</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var product in Model)
+                        {
+                            var serializedProduct = JsonConvert.SerializeObject(product);
+                            <tr>
+                                <td>@product.Name</td>
+                                <td>@product.Brand</td>
+                                <td>@product.Category</td>
+                                <td>@(product.Price)$</td>
+                                <td>@product.CreatedAt.ToString("MM/dd/yyyy")</td>
+                                <td><img src="/Products/@product.ImageFileName" class="icon-image" /></td>
+                                <td style="white-space:nowrap">
+                                    <a class="btn btn-primary btn-sm" style="background-color: green;float:right;"
+                                       onclick='showInfoDiv(@Html.Raw(serializedProduct)); return false;' title="details">
+                                        <ion-icon style="width:15px; height:15px; float:left;" name="information-circle-outline"></ion-icon>
+                                    </a>
+                                </td>
+                                <td style="white-space:nowrap">
+                                    <a class="btn btn-primary btn-sm"
+                                       onclick='showAddToCartDiv(@Html.Raw(serializedProduct)); return false;' title="add to Cart">
+                                        <ion-icon style="width:15px; height:15px; float:left;" name="cart-outline"></ion-icon>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="recentCustomers" id="showAdvertesment">
+            <div class="text-center">
+                <div class="mySlides">
+                    <img src="/Products/20221129112417_4605.jpg" style="max-width:200px; width:70%; height:210px;">
+                    <div>
+                        <h3>Phones</h3>
+                        <p><b>Essential attributes include fast charging capabilities, access to versatile business applications</b></p>
+                        <div>
+                            <p>
+                                Experience the future at your fingertips with our latest smartphones.
+                                Designed to be sleek, powerful, and intuitive, capture every moment,
+                                and do more with a phone that's built to keep up with your dynamic lifestyle.
+                            </p>
+                        </div>
+                    
+                    </div>
+                </div>
+
+                <div class="mySlides">
+                    <img src="/Products/honor-magicbook-x16-list-gray-pc.png" style="max-width:200px; width:70%; height:210px;">
+                    <div>
+                        <h3>Laptops</h3>
+                        <p><b>Unlock your potential with our premium laptops</b></p>
+                    </div>
+                    <div>
+                        <p>
+                            Empower your productivity with our state-of-the-art laptops. Whether you’re working,
+                            gaming, or streaming, these devices are engineered to deliver exceptional speed,
+                            vibrant displays, and unmatched versatility.
+                        </p>
+                    </div>
+                </div>
+                <div class="mySlides">
+                    <img src="/Products/91cYFY4F0GL.jpg" style="max-width:200px; width:70%; height:210px;">
+                    <div>
+                        <h3>Screens</h3>
+                        <p><b>Immerse yourself in stunning visuals with our advanced TV screens</b></p>
+                        <div>
+                            <p>
+                                Step into a world of immersive entertainment with our premium TV screens.
+                                Featuring ultra-high definition resolution, vibrant colors, and crystal-clear sound,
+                                our TVs transform your living room into a cinematic experience.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Product Details Section -->
+        <div class="recentCustomers" id="infoDiv" style="display:none;">
+            <div class="cardHeader">
+                <h2>Details</h2>
+            </div>
+            <div id="productInfoContent"></div>
+        </div>
+
+        <!-- Add to Cart Section -->
+        <div class="recentCustomers" id="addToCartDiv" style="display:none;">
+            <div class="cardHeader">
+                <h2>Add to Cart</h2>
+            </div>
+            <div id="addToCartContent"></div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="/js/custom.js"></script>
+}
+<!-- =========== Scripts =========  -->
+<!-- ====== ionicons ======= -->
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

@@ -1,0 +1,89 @@
+﻿@model List<RequestItems>
+@{
+	decimal total = 0;
+	var number = 0;
+	foreach (var request in Model)
+	{
+		total += (request.RequestProduct.Price) * (request.Cuantity);
+		number++;
+	}
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="index">
+    <div class="details" style="width:150%; position: relative;">
+        <div class="recentOrders" style="width:100%;">
+            <div class="col-auto">
+                <div class="row">
+                    <div class="col" style="float:left;">
+                        <div class="cardHeader">
+                            <h2>Your Cart</h2>
+                        </div>
+                    </div>
+                    <div class="col" style="display: flex; justify-content: flex-end; gap: 20px;">
+                        <div class="cardHeader">
+                            <h2>Total: @total</h2>
+                        </div>
+						<div>
+							<a class="btn btn-success" asp-controller="Cart" asp-action="SendRequest">Send Request</a>
+						</div>
+					</div>
+
+                </div>
+            </div>
+            <div class="table-wrapper" style="position: relative; height: 400px; overflow-y: auto;">
+				<table class="table" style="width: 100%; table-layout: fixed;">
+					<thead style="position: sticky; top: 0; background-color: white; z-index: 1;">
+						<tr>
+							<th>Name</th>
+							<th>Brand</th>
+							<th>Price</th>
+							<th>Image</th>
+							<th>Incomed</th>
+							<th>Quantity</th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var request in Model)
+						{
+							<tr>
+								<td>@request.RequestProduct.Name</td>
+								<td>@request.RequestProduct.Brand</td>
+								<td>@(request.RequestProduct.Price)$</td>
+								<td><img src="/Products/@request.RequestProduct.ImageFileName" class="icon-image" /></td>
+								<td>@request.RequestProduct.CreatedAt.ToString("MM/dd/yyyy")</td>
+								<td>@request.Cuantity</td>
+								<td>
+									<a class="btn btn-primary btn-sm" asp-controller="Cart" asp-action="EditQuantity" asp-route-id="@request.Id" style="width:70px;font-size:10px; float:right;">Edit Quant</a>
+								</td>
+								<td>
+									<a class="btn btn-danger btn-sm" asp-controller="Cart" asp-action="Delete" asp-route-id="@request.Id" onclick="return confirm('Sure to delete this item?')" style="width:50px;font-size:10px;">Delete</a>
+								</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+
+            </div>
+        </div>
+
+        <!-- Product Details Section -->
+        <div class="recentCustomers" id="infoDiv" style="display:none;">
+            <div class="cardHeader">
+                <h2>Details</h2>
+            </div>
+            <div id="productInfoContent"></div>
+        </div>
+
+        <!-- Add to Cart Section -->
+        <div class="recentCustomers" id="addToCartDiv" style="display:none;">
+            <div class="cardHeader">
+                <h2>Add to Cart</h2>
+            </div>
+            <div id="addToCartContent"></div>
+        </div>
+    </div>
+</div>
+

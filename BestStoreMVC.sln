@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35122.118
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BestStoreMVC", "BestStoreMVC\BestStoreMVC.csproj", "{CF1FD900-472B-4238-B449-D857E030B115}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CF1FD900-472B-4238-B449-D857E030B115}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF1FD900-472B-4238-B449-D857E030B115}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF1FD900-472B-4238-B449-D857E030B115}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF1FD900-472B-4238-B449-D857E030B115}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B540552A-BFAF-44F9-9D6C-C4B732DBE926}
+	EndGlobalSection
+EndGlobal

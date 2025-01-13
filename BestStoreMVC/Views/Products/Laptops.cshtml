@@ -1,0 +1,189 @@
+﻿@using Newtonsoft.Json
+@model List<Product>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container1">
+    <div class="navigation">
+        <ul>
+            <li>
+                <a href="#">
+                    <span class="icon">
+                        <ion-icon name="cart-outline"></ion-icon>
+                    </span>
+                    <span class="title">Best Store</span>
+                </a>
+            </li>
+            <li>
+                <a asp-controller="Home" asp-action="Index">
+                    <span class="icon">
+                        <ion-icon name="home-outline"></ion-icon>
+                    </span>
+                    <span class="title">Main</span>
+                </a>
+            </li>
+            <li>
+                <a asp-controller="Products" asp-action="Phones">
+                    <span class="icon">
+                        <ion-icon name="phone-portrait-outline"></ion-icon>
+                    </span>
+                    <span class="title">Phones</span>
+                </a>
+            </li>
+            <li style="background-color:white;">
+                <a asp-controller="Products" asp-action="Laptops">
+                    <span class="icon">
+                        <ion-icon name="laptop-outline" style="color:#2a2185;"></ion-icon>
+                    </span>
+                    <span class="title" style="color:#2a2185;">Laptops</span>
+                </a>
+            </li>
+            <li>
+                <a asp-controller="Products" asp-action="Screens">
+                    <span class="icon">
+                        <ion-icon name="desktop-outline"></ion-icon>
+                    </span>
+                    <span class="title">Screens</span>
+                </a>
+            </li>
+            <li>
+                <a asp-controller="Products" asp-action="Admin">
+                    <span class="icon">
+                        <ion-icon name="cog-outline"></ion-icon>
+                    </span>
+                    <span class="title">Management</span>
+                </a>
+            </li>
+            <li>
+                <a asp-controller="Home" asp-action="About_Us">
+                    <span class="icon">
+                        <ion-icon name="information-circle-outline"></ion-icon>
+                    </span>
+                    <span class="title">About Us</span>
+                </a>
+            </li>
+            <li>
+                <a asp-controller="Users" asp-action="LogOut">
+                    <span class="icon">
+                        <ion-icon name="log-out-outline"></ion-icon>
+                    </span>
+                    <span class="title">Sign Out</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="index">
+    <div class="details" style="width:100%; position: relative;">
+        <div class="recentOrders" style="width:100%;">
+            <div class="cardHeader">
+                <h2>Laptops Section</h2>
+            </div>
+            <div class="table-wrapper" style="position: relative; height: 400px; overflow-y: auto;">
+                <table class="table" style="width: 100%; table-layout: fixed;">
+                    <thead style="position: sticky; top: 0; background-color: white; z-index: 1;">
+                        <tr>
+                            <th>Name</th>
+                            <th>Brand</th>
+                            <th>Price</th>
+                            <th>Image</th>
+                            <th>Incomed</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var product in Model)
+                        {
+                            var serializedProduct = JsonConvert.SerializeObject(product);
+                            <tr>
+                                <td>@product.Name</td>
+                                <td>@product.Brand</td>
+                                <td>@(product.Price)$</td>
+                                <td><img src="/Products/@product.ImageFileName" class="icon-image" /></td>
+                                <td>@product.CreatedAt.ToString("MM/dd/yyyy")</td>
+                                <td style="white-space:nowrap">
+                                    <a class="btn btn-primary btn-sm" style="background-color: green;float:right;"
+                                       onclick='showInfoDiv(@Html.Raw(serializedProduct)); return false;' title="details">
+                                        <ion-icon style="width:15px; height:15px; float:left;" name="information-circle-outline"></ion-icon>
+                                    </a>
+                                </td>
+                                <td style="white-space:nowrap">
+                                    <a class="btn btn-primary btn-sm"
+                                       onclick='showAddToCartDiv(@Html.Raw(serializedProduct)); return false;' title="add to Cart">
+                                        <ion-icon style="width:15px; height:15px; float:left;" name="cart-outline"></ion-icon>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <div class="recentCustomers" id="showAdvertesment">
+            <div class="text-center">
+                <div class="mySlides">
+                    <img src="/Products/20241001064628657.webp" style="max-width:200px; width:80%; height:180px;">
+                    <div>
+                        <h3><strong>DELL</strong></h3>
+                        <p><b>Unlock your potential with our premium laptops</b></p>
+                        <div>
+                            <p>
+                                Empower your productivity with our state-of-the-art laptops. Whether you’re working,
+                                gaming, or streaming, these devices are engineered to deliver exceptional speed,
+                                vibrant displays, and unmatched versatility.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="mySlides">
+                    <img src="/Products/laptop3.png" style="max-width:200px; width:80%; height:180px;">
+                    <div>
+                        <h3><strong>Apple</strong></h3>
+                        <p><b>Unlock your potential with our premium laptops</b></p>
+                    </div>
+                    <div>
+                        <p>
+                            Empower your productivity with our state-of-the-art laptops. Whether you’re working,
+                            gaming, or streaming, these devices are engineered to deliver exceptional speed,
+                            vibrant displays, and unmatched versatility.
+                        </p>
+                    </div>
+                </div>
+                <div class="mySlides">
+                    <img src="/Products/20241001064700347.jpg" style="max-width:200px; width:80%; height:180px;">
+                    <div>
+                        <h3><strong>Thinkpad</strong></h3>
+                        <p><b>Unlock your potential with our premium laptops</b></p>
+                        <div>
+                            <p>
+                                Empower your productivity with our state-of-the-art laptops. Whether you’re working,
+                                gaming, or streaming, these devices are engineered to deliver exceptional speed,
+                                vibrant displays, and unmatched versatility.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Product Details Section -->
+        <div class="recentCustomers" id="infoDiv" style="display:none;">
+            <div class="cardHeader">
+                <h2>Details</h2>
+            </div>
+            <div id="productInfoContent"></div>
+        </div>
+
+        <!-- Add to Cart Section -->
+        <div class="recentCustomers" id="addToCartDiv" style="display:none;">
+            <div class="cardHeader">
+                <h2>Add to Cart</h2>
+            </div>
+            <div id="addToCartContent"></div>
+        </div>
+    </div>
+</div>

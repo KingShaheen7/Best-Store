@@ -1,0 +1,126 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container1">
+    <div class="navigation">
+        <ul>
+            <li>
+                <a href="#">
+                    <span class="icon">
+                        <ion-icon name="cart-outline"></ion-icon>
+                    </span>
+                    <span class="title">Best Store</span>
+                </a>
+            </li>
+            <li>
+                <a asp-controller="Home" asp-action="Index">
+                    <span class="icon">
+                        <ion-icon name="home-outline"></ion-icon>
+                    </span>
+                    <span class="title">Main</span>
+                </a>
+            </li>
+            <li>
+                <a asp-controller="Products" asp-action="Phones">
+                    <span class="icon">
+                        <ion-icon name="phone-portrait-outline"></ion-icon>
+                    </span>
+                    <span class="title">Phones</span>
+                </a>
+            </li>
+            <li>
+                <a asp-controller="Products" asp-action="Laptops">
+                    <span class="icon">
+                        <ion-icon name="laptop-outline"></ion-icon>
+                    </span>
+                    <span class="title">Laptops</span>
+                </a>
+            </li>
+            <li>
+                <a asp-controller="Products" asp-action="Screens">
+                    <span class="icon">
+                        <ion-icon name="desktop-outline"></ion-icon>
+                    </span>
+                    <span class="title">Screens</span>
+                </a>
+            </li>
+            <li>
+                <a asp-controller="Products" asp-action="Admin">
+                    <span class="icon">
+                        <ion-icon name="cog-outline"></ion-icon>
+                    </span>
+                    <span class="title">Management</span>
+                </a>
+            </li>
+            <li style="background-color:white;">
+                <a href="#">
+                    <span class="icon">
+                        <ion-icon name="information-circle-outline" style="color:#2a2185;"></ion-icon>
+                    </span>
+                    <span class="title" style="color:#2a2185;">About Us</span>
+                </a>
+            </li>
+            <li>
+                <a asp-controller="Users" asp-action="LogOut">
+                    <span class="icon">
+                        <ion-icon name="log-out-outline"></ion-icon>
+                    </span>
+                    <span class="title">Sign Out</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="index">
+    <div class="details" style="width:100%; position: relative;">
+        <div class="recentOrders" style="width:150%;">
+            <div class="col-auto">
+                <div class="row">
+                    <div class="col" style="float:left;">
+                        <div class="cardHeader">
+                            <h2>About Us</h2>
+                        </div>
+                    </div>
+                    <div class="col" style="display: flex; justify-content: flex-end; gap: 20px;">
+                        <a href="https://wa.me/730571800" target="_blank">
+                            <ion-icon name="logo-whatsapp" style="width:40px;height:40px; color:#2a2185;"></ion-icon>
+                        </a>
+                        <a href="https://www.facebook.com/AbdulmalekSaifAlghawly" target="_blank">
+                            <ion-icon name="logo-facebook" style="width:40px;height:40px; color:#2a2185;"></ion-icon>
+                        </a>
+                        <a href="https://www.instagram.com/calm_addicted" target="_blank">
+                            <ion-icon name="logo-instagram" style="width:40px;height:40px; color:#2a2185;"></ion-icon>
+                        </a>
+                        <a href="mailto:abdulmaleksaif7.com">
+                            <ion-icon name="mail-outline" style="width:40px;height:40px; color:#2a2185;"></ion-icon>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <p>
+                <b>
+                    At KingShaheen Store, we are passionate about bringing the latest and greatest in technology directly
+                    to you. Specializing in phones, laptops, and TV screens, we curate top-tier products from the most trusted
+                    brands, ensuring you always have access to the cutting-edge devices that keep you connected, entertained,
+                    and productive.
+                </b>
+            </p>
+            <p>
+                <b>
+                    Our mission is simple: to enhance your digital life with innovative technology, seamless shopping
+                    experiences, and unparalleled customer service. Whether you're upgrading your smartphone,
+                    seeking a powerful laptop, or looking for the perfect screen for your home entertainment,
+                    we’re here to guide you every step of the way.
+                </b>
+            </p>
+            <p>
+                <b>
+                    Explore our wide selection and discover how we can help you stay ahead in the world of tech.
+                </b>
+            </p>
+        </div>        
+    </div>
+</div>
+
